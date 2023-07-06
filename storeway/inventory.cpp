@@ -1,4 +1,15 @@
-#include "inventory.h"
+#include <iostream>
+#include <fstream>
+#include <vector>
+#include <algorithm>
+#include <limits>
+
+struct Item {
+    std::string name;
+    int quantity;
+
+    Item(const std::string& itemName, int itemQuantity) : name(itemName), quantity(itemQuantity) {}
+};
 
 void addItem(std::vector<Item>& inventory, const std::string& itemName, int itemQuantity) {
     Item newItem(itemName, itemQuantity);
@@ -17,6 +28,7 @@ void removeItem(std::vector<Item>& inventory, const std::string& itemName) {
 
     std::cout << "Item not found in the inventory or quantity is already 0.\n";
 }
+
 
 void displayInventory(const std::vector<Item>& inventory) {
     std::cout << "Inventory:\n";
@@ -74,22 +86,18 @@ int main() {
 
     inventory = loadInventoryFromFile(filename);
 
-    std::cout << Color::Bold << Color::Cyan;
-    std::cout << R"(
-********************************************
-*                                          *
-*   Welcome to the To The Shopping List    *
-*                                          *
-********************************************
-)";
-    std::cout << Color::Reset;
+    std::cout << "********************************************\n";
+    std::cout << "*                                          *\n";
+    std::cout << "*   Welcome to the Inventory Management    *\n";
+    std::cout << "*                                          *\n";
+    std::cout << "********************************************\n";
 
     while (true) {
-        std::cout << "\nMain Menu:\n";
+        std::cout << "\nInventory Management System\n";
         std::cout << "1. Add Item\n";
         std::cout << "2. Remove Item\n";
         std::cout << "3. Display Inventory\n";
-        std::cout << "4. Save Inventory to File\n";
+        std::cout<< "4. Save Inventory to File\n";
         std::cout << "5. Quit\n";
         std::cout << "Enter your choice (1-5): ";
 

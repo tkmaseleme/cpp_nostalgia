@@ -1,7 +1,7 @@
 CXX := g++
 CXXFLAGS := -std=c++17 -Wall -Wextra
 
-SRC := main.cpp
+SRC := inventory.cpp
 OBJ := $(SRC:.cpp=.o)
 EXECUTABLE := inventory_management
 
