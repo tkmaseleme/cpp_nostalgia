@@ -1,2 +1,0 @@
-cheese,4
-coffee,2
