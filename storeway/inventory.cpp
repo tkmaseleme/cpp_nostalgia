@@ -4,6 +4,26 @@
 #include <algorithm>
 #include <limits>
 
+namespace Color {
+    const std::string Reset = "\033[0m";
+    const std::string Black = "\033[30m";
+    const std::string Red = "\033[31m";
+    const std::string Green = "\033[32m";
+    const std::string Yellow = "\033[33m";
+    const std::string Blue = "\033[34m";
+    const std::string Magenta = "\033[35m";
+    const std::string Cyan = "\033[36m";
+    const std::string White = "\033[37m";
+    const std::string BoldBlack = "\033[1m\033[30m";
+    const std::string BoldRed = "\033[1m\033[31m";
+    const std::string BoldGreen = "\033[1m\033[32m";
+    const std::string BoldYellow = "\033[1m\033[33m";
+    const std::string BoldBlue = "\033[1m\033[34m";
+    const std::string BoldMagenta = "\033[1m\033[35m";
+    const std::string BoldCyan = "\033[1m\033[36m";
+    const std::string BoldWhite = "\033[1m\033[37m";
+}
+
 struct Item {
     std::string name;
     int quantity;
@@ -26,7 +46,9 @@ void removeItem(std::vector<Item>& inventory, const std::string& itemName) {
         }
     }
 
+    std::cout << Color::Red;
     std::cout << "Item not found in the inventory or quantity is already 0.\n";
+    std::cout << Color::Reset;
 }
 
 
@@ -50,7 +72,9 @@ void saveInventoryToFile(const std::vector<Item>& inventory, const std::string& 
         file.close();
         std::cout << "Inventory saved to file.\n";
     } else {
-        std::cout << "Unable to open file for saving inventory.\n";
+        std::cout << Color::Red;
+        std::cout << "Unable to open file for loading inventory.\n\n";
+        std::cout << Color::Reset;
     }
 }
 
@@ -70,7 +94,9 @@ std::vector<Item> loadInventoryFromFile(const std::string& filename) {
         file.close();
         std::cout << "Inventory loaded from file.\n";
     } else {
-        std::cout << "Unable to open file for loading inventory.\n";
+        std::cout << Color::Red;
+        std::cout << "Unable to open file for loading inventory.\n\n";
+        std::cout << Color::Reset;
     }
     return inventory;
 }
@@ -86,20 +112,35 @@ int main() {
 
     inventory = loadInventoryFromFile(filename);
 
+    std::cout << Color::BoldCyan;
     std::cout << "********************************************\n";
     std::cout << "*                                          *\n";
-    std::cout << "*   Welcome to the Inventory Management    *\n";
+    std::cout << "*   Welcome to the Pantry Manager          *\n";
     std::cout << "*                                          *\n";
     std::cout << "********************************************\n";
+    std::cout << Color::Reset;
+
 
     while (true) {
-        std::cout << "\nInventory Management System\n";
+        std::cout << Color::BoldCyan;
+        std::cout << "\nInventory Management System\n\n";
+        std::cout << Color::Reset;
+        std::cout << Color::Green;
         std::cout << "1. Add Item\n";
+        std::cout << Color::Reset;
+        std::cout << Color::Red;
         std::cout << "2. Remove Item\n";
+        std::cout << Color::Reset;
+        std::cout << Color::Green;
         std::cout << "3. Display Inventory\n";
-        std::cout<< "4. Save Inventory to File\n";
+        std::cout << "4. Save Inventory to File\n";
+        std::cout << Color::Reset;
+        std::cout << Color::Red;
         std::cout << "5. Quit\n";
-        std::cout << "Enter your choice (1-5): ";
+        std::cout << Color::Reset;
+        std::cout << Color::BoldCyan;
+        std::cout << "\nEnter your choice (1-5): ";
+        std::cout << Color::Reset;
 
         int choice;
         std::cin >> choice;
